@@ -1,0 +1,23 @@
+{
+  "name": "api-register-tdd-ddd-solid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CharlesPereira1/api-register-tdd-ddd-solid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CharlesPereira1/api-register-tdd-ddd-solid/issues"
+  },
+  "homepage": "https://github.com/CharlesPereira1/api-register-tdd-ddd-solid#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^5.0.6"
+  }
+}
