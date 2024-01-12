@@ -1,18 +1,14 @@
 import { AbsenceOfParamError } from '../errors/absence-of-param-error'
-import { badRequest } from '../helpers/http-helper'
+import { badRequest, serverError } from '../helpers/http-helper'
 
 import { HttpRequestProps, HttpResponseProps } from '../protocols/http'
 import { ControllerSignUp } from '../protocols/controller'
 import { EmailValidator } from '../protocols/email-validator'
 import { InvalidParamError } from '../errors/invalid-param-error'
-import { ServerError } from '../errors/server-error'
 
 export class SignUpController implements ControllerSignUp {
-  // private readonly emailValidator: EmailValidator
 
-  constructor(private readonly emailValidator: EmailValidator) {
-    // this.emailValidator = emailValidator
-  }
+  constructor(private readonly emailValidator: EmailValidator) {}
 
   handle(httpRequest: HttpRequestProps): HttpResponseProps {
     try {
@@ -31,10 +27,7 @@ export class SignUpController implements ControllerSignUp {
         return badRequest(new InvalidParamError('email'))
       }
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: new ServerError()
-      }
+      return serverError()
     }
 
   }
