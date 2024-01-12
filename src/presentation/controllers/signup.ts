@@ -1,8 +1,7 @@
+import  {HttpRequestProps, HttpResponseProps, ControllerSignUp, EmailValidator} from '../protocols'
+
 import { badRequest, serverError } from '../helpers/http-helper'
 
-import { HttpRequestProps, HttpResponseProps } from '../protocols/http'
-import { ControllerSignUp } from '../protocols/controller'
-import { EmailValidator } from '../protocols/email-validator'
 import { AbsenceOfParamError, InvalidParamError } from '../errors'
 
 export class SignUpController implements ControllerSignUp {
@@ -24,7 +23,7 @@ export class SignUpController implements ControllerSignUp {
 
       if(!isValid) {
         return badRequest(new InvalidParamError('email'))
-      }
+    }
     } catch (error) {
       return serverError()
     }
