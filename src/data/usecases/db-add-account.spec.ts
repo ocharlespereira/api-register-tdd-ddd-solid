@@ -28,11 +28,9 @@ const makeSut = (): SutProps => {
 
 describe('DbAccount UseCase', () => {
   it('Should call Encrypter with correct password', async () => {
-
     const { sut, encrypterStub } = makeSut()
 
     const encriptSpy = jest.spyOn(encrypterStub, 'encrypt')
-    console.log('encriptSpy :', encriptSpy);
 
     const accountData = {
       name: 'valid_name',
@@ -43,5 +41,21 @@ describe('DbAccount UseCase', () => {
     await sut.add(accountData)
 
     expect(encriptSpy).toHaveBeenCalledWith('valid_password')
+  }),
+
+  it('Should throw if Encypter throws', async () => {
+    const { sut, encrypterStub } = makeSut()
+
+    jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(new Promise((_,reject) => reject(new Error())))
+
+    const accountData = {
+      name: 'valid_name',
+      email: 'valid_email',
+      password: 'valid_password'
+    }
+
+    const promise = sut.add(accountData)
+
+    await expect(promise).rejects.toThrow()
   })
 })
